@@ -3,12 +3,12 @@ from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.text_rank import TextRankSummarizer
 
-def summarize_text(text, lead='', sentence_count=3):
+def summarize_text(text, lead='', sentence_count=4):
     try:
         parser = PlaintextParser.from_string(text, Tokenizer("korean"))
         summarizer = TextRankSummarizer()
         summary = summarizer(parser.document, sentence_count)
         body = " ".join([str(sentence) for sentence in summary])
-        return f"{body}" if lead in body else f"{lead}\n\n{body}"
+        return body.strip() if body else text[:500] + " ..."
     except:
-        return (lead + "\n\n" if lead else "") + text[:300] + " ..."
+        return text[:500] + " ..."
