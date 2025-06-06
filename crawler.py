@@ -53,7 +53,7 @@ def get_article_info(url):
         content = '[내용 없음]'
         paragraphs = []
 
-    lead = paragraphs[0] if paragraphs else ''
+    lead = ''  # ✅ 리드문 제거: 중복 방지 목적
 
     return {
         'title': title,
