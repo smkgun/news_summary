@@ -21,8 +21,7 @@ def save_seen_articles(seen_ids):
 urls = get_latest_yna_urls(limit=30)
 
 st.set_page_config(page_title="정치 뉴스 요약", layout="centered", 
-                   initial_sidebar_state="collapsed"
-                   )  # 모바일 첫 진입시 사이드바 닫힘
+                   initial_sidebar_state="collapsed")  # 모바일 첫 진입시 사이드바 닫힘
 st.title("📰 연합뉴스 정치 뉴스 실시간 요약 ")
 
 if 'last_checked' not in st.session_state:
@@ -59,7 +58,7 @@ for url in urls:
         article_infos.append(info)
 
 # 🔄 최신순 정렬 보장
-article_infos.sort(key=lambda x: x['article_time'], reverse=False)
+article_infos.sort(key=lambda x: x['article_time'], reverse=True)
 
 for info in article_infos:
     url = info['url']
@@ -78,7 +77,7 @@ for info in article_infos:
     st.markdown(f"**🕒 송고시각**: {info['timestamp']}")
     st.markdown(f"**📎 부제**: {info['subtitle']}")
     with st.expander("요약 보기"):
-        st.write(summarize_text(info['content'], lead=info.get('lead', '')))
+        st.write(summarize_text(info['content']))
 
     if is_new:
         st.session_state.seen_articles.add(art_id)
