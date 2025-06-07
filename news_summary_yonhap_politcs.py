@@ -22,7 +22,7 @@ urls = get_latest_yna_urls(limit=30)
 
 st.set_page_config(page_title="정치 뉴스 요약", layout="centered", 
                    initial_sidebar_state="collapsed")  # 모바일 첫 진입시 사이드바 닫힘
-st.title("📰 연합뉴스 정치 뉴스 실시간 요약 ")
+st.title("📰 Yonhap 정치 뉴스 실시간 요약 (개인용) ")
 
 if 'last_checked' not in st.session_state:
     st.session_state.last_checked = datetime.now()
