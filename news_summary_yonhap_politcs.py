@@ -58,7 +58,7 @@ for url in urls:
         article_infos.append(info)
 
 # 🔄 최신순 정렬 보장
-article_infos.sort(key=lambda x: x['article_time'], reverse=True)
+article_infos.sort(key=lambda x: x['article_time'], reverse=False)
 
 for info in article_infos:
     url = info['url']
